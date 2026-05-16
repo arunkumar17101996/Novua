@@ -22,75 +22,41 @@ import React, { useState, useEffect } from 'react';
 
 // --- Components ---
 
-const BrandLogo = ({ isScrolled, light = false }: { isScrolled?: boolean, light?: boolean }) => (
+const BrandLogo = ({ isScrolled, onDarkBackground = false }: { isScrolled?: boolean, onDarkBackground?: boolean }) => (
   <div className="flex items-center gap-4 group">
-    <div className="relative w-20 h-20 flex items-center justify-center">
-      {/* Precision recreation of the 'Pencil Rocket' logo from image */}
-      <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full transform group-hover:scale-110 transition-transform duration-500 overflow-visible">
-        {/* The Petals/Launching Sparks */}
-        {/* Left Green Petal */}
-        <motion.path 
-          initial={{ opacity: 0, scale: 0.5, x: 10, y: 10 }}
-          animate={{ opacity: 1, scale: 1, x: 0, y: 0 }}
-          transition={{ delay: 0.2 }}
-          d="M65 85C45 80 40 60 60 50C80 40 85 70 65 85Z" 
-          fill="#16A34A" 
-        />
-        
-        {/* Top White Petal */}
-        <motion.path 
-          initial={{ opacity: 0, scale: 0.5, y: 20 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          transition={{ delay: 0.1 }}
-          d="M100 80C85 60 85 20 100 20C115 20 115 60 100 80Z" 
-          fill={isScrolled || light ? "#F8FAFC" : "#FFFFFF"} 
-          stroke={isScrolled || light ? "#00153D" : "none"}
-          strokeWidth="0.5"
-        />
-        
-        {/* Right Yellow Petal */}
-        <motion.path 
-          initial={{ opacity: 0, scale: 0.5, x: -10, y: 10 }}
-          animate={{ opacity: 1, scale: 1, x: 0, y: 0 }}
-          transition={{ delay: 0.3 }}
-          d="M135 85C155 80 160 60 140 50C120 40 115 70 135 85Z" 
-          fill="#FACC15" 
-        />
-
-        {/* The Pencil Body (pointed down, slanted) */}
-        <g transform="translate(100, 115) rotate(-22)">
-          {/* Main Pencil Body */}
-          <path d="M-22 -45L22 -45L25 35L0 60L-25 35L-22 -45Z" fill="#2563EB" stroke={isScrolled || light ? "#00153D" : "white"} strokeWidth="1.5" />
-          
-          {/* Facial/Side shading for 3D effect */}
-          <path d="M0 -45L22 -45L25 35L0 60L0 -45Z" fill="#1D4ED8" />
-          
-          {/* The three distinct white ridges at the top */}
-          <path d="M-18 -38C-18 -42 18 -42 18 -38" stroke="white" strokeWidth="2.5" strokeLinecap="round" />
-          <path d="M-20 -30C-20 -34 20 -34 20 -30" stroke="white" strokeWidth="2.5" strokeLinecap="round" />
-          <path d="M-21 -22C-21 -26 21 -26 21 -22" stroke="white" strokeWidth="2.5" strokeLinecap="round" />
-          
-          {/* The Tip Sparkle */}
-          <path d="M0 60L4 54L0 50L-4 54L0 60Z" fill="white" />
-        </g>
-      </svg>
+    {/* Circular Logo Container - Enhanced with better borders and background */}
+    <div className="relative w-12 h-12 md:w-14 md:h-14 flex items-center justify-center rounded-full overflow-hidden border-2 border-brand-gold bg-white shadow-[0_0_15px_rgba(0,0,0,0.1)] flex-shrink-0">
+      <img 
+        src="/logo.png" 
+        alt="Novua Edge Academy" 
+        className="w-[85%] h-[85%] object-contain transform group-hover:scale-110 transition-transform duration-500"
+        onError={(e) => {
+          e.currentTarget.style.display = 'none';
+          const fallback = e.currentTarget.parentElement?.querySelector('.logo-fallback');
+          if (fallback) fallback.classList.remove('hidden');
+        }}
+      />
+      <div className="logo-fallback hidden absolute inset-0 flex items-center justify-center bg-brand-blue">
+        <GraduationCap className="text-white w-1/2 h-1/2" />
+      </div>
     </div>
     
     <div className="flex flex-col">
       <div className="flex flex-col">
-        <h1 className={`font-display font-black text-3xl leading-none tracking-tight ${isScrolled || light ? 'text-brand-blue' : 'text-white'}`}>
+        <h1 className={`font-display font-black text-xl md:text-2xl leading-tight tracking-tight transition-colors duration-300 ${
+          isScrolled ? 'text-brand-blue' : (onDarkBackground ? 'text-white' : 'text-brand-blue')
+        }`}>
           NOVUA EDGE
         </h1>
-        <div className="flex items-center gap-2 mt-1">
-          <span className={`text-[12px] tracking-[0.5em] font-black leading-none ${isScrolled || light ? 'text-brand-blue/40' : 'text-blue-200/50'}`}>
+        <div className="flex items-center gap-2 -mt-1">
+          <span className={`text-[8px] md:text-[10px] tracking-[0.4em] font-black leading-none transition-colors duration-300 ${
+            isScrolled ? 'text-brand-blue/60' : (onDarkBackground ? 'text-white/60' : 'text-brand-blue/60')
+          }`}>
             ACADEMY
           </span>
-          <div className="h-px flex-1 bg-brand-gold opacity-50" />
+          <div className="h-px flex-1 bg-brand-gold" />
         </div>
       </div>
-      <p className={`text-[9px] font-bold mt-2 uppercase tracking-wider ${isScrolled || light ? 'text-slate-500' : 'text-white/70'}`}>
-        Investing in Minds, Empowering Futures
-      </p>
     </div>
   </div>
 );
@@ -108,31 +74,30 @@ const Navbar = ({ onApply }: { onApply: () => void }) => {
   const navLinks = [
     { name: 'Home', href: '#home' },
     { name: 'Courses', href: '#courses' },
+    { name: 'Why Us', href: '#why-choose-us' },
     { name: 'Educators', href: '#educators' },
     { name: 'Testimonials', href: '#testimonials' },
     { name: 'Contact', href: '#contact' },
   ];
 
   return (
-    <nav className={`fixed w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-white shadow-md py-2' : 'bg-transparent py-4'}`}>
+    <nav className={`fixed w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-white shadow-md py-2' : 'bg-white/90 backdrop-blur-md py-4'}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center">
-          <BrandLogo isScrolled={isScrolled} />
+          <BrandLogo isScrolled={isScrolled} onDarkBackground={false} />
 
           {/* Desktop Nav */}
-          <div className="hidden md:flex items-center gap-6">
+          <div className="hidden md:flex items-center gap-2">
             {navLinks.map((link) => (
               <a 
                 key={link.name} 
                 href={link.href}
-                className={`px-4 py-2 rounded-xl font-semibold transition-all group relative ${
-                  isScrolled ? 'text-gray-700 hover:bg-brand-blue/5' : 'text-white hover:bg-white/10'
+                className={`px-3 py-2 rounded-xl font-bold text-sm transition-all group relative ${
+                  isScrolled ? 'text-gray-700 hover:bg-brand-blue/5' : 'text-brand-blue hover:bg-brand-blue/5'
                 }`}
               >
-                <span className="relative z-10 transition-colors group-hover:text-brand-gold">{link.name}</span>
-                <span className={`absolute bottom-1 left-4 right-4 h-0.5 scale-x-0 group-hover:scale-x-100 transition-transform origin-left ${
-                  isScrolled ? 'bg-brand-gold' : 'bg-brand-gold'
-                }`} />
+                <span className="relative z-10 transition-colors group-hover:text-brand-gold whitespace-nowrap">{link.name}</span>
+                <span className={`absolute bottom-1 left-3 right-3 h-0.5 scale-x-0 group-hover:scale-x-100 transition-transform origin-left bg-brand-gold`} />
               </a>
             ))}
             <button 
@@ -149,9 +114,9 @@ const Navbar = ({ onApply }: { onApply: () => void }) => {
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
             {isMenuOpen ? (
-              <X className={isScrolled ? 'text-brand-blue' : 'text-white'} />
+              <X className="text-brand-blue" />
             ) : (
-              <Menu className={isScrolled ? 'text-brand-blue' : 'text-white'} />
+              <Menu className="text-brand-blue" />
             )}
           </button>
         </div>
@@ -572,63 +537,75 @@ const Testimonials = () => {
 
 const Gallery = () => {
   const images = [
-    { url: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=2070&auto=format&fit=crop", title: "Modern Facilities" },
-    { url: "https://images.unsplash.com/photo-1544377193-33dcf4d68fb5?q=80&w=2127&auto=format&fit=crop", title: "Digital Classrooms" },
-    { url: "https://images.unsplash.com/photo-1532094349884-543bb1198343?q=80&w=2070&auto=format&fit=crop", title: "Practical Labs" },
-    { url: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=80&w=2070&auto=format&fit=crop", title: "Expert Sessions" },
-    { url: "https://images.unsplash.com/photo-1571260899304-425eee4c7efc?q=80&w=2070&auto=format&fit=crop", title: "Study Environment" },
-    { url: "https://images.unsplash.com/photo-1523240715640-691435011bd5?q=80&w=2070&auto=format&fit=crop", title: "Student Success" },
+    { 
+      url: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=80&w=2070&auto=format&fit=crop", 
+      title: "Experienced Faculty",
+      desc: "Guided by IITians & Gold Medalists"
+    },
+    { 
+      url: "https://images.unsplash.com/photo-1571260899304-425eee4c7efc?q=80&w=2070&auto=format&fit=crop", 
+      title: "Small Batch",
+      desc: "Limited to 15 students for personal focus"
+    },
+    { 
+      url: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?q=80&w=2070&auto=format&fit=crop", 
+      title: "Weekly Mock Test",
+      desc: "Systematic performance tracking"
+    },
+    { 
+      url: "https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=2070&auto=format&fit=crop", 
+      title: "Personalized Guidance",
+      desc: "One-on-one doubt solving & career planning"
+    },
   ];
 
   return (
-    <section id="environment" className="py-32 bg-slate-50 relative overflow-hidden">
-      <div className="absolute top-0 left-0 w-64 h-64 bg-brand-gold/5 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2" />
+    <section id="why-choose-us" className="py-32 bg-white relative overflow-hidden">
+      <div className="absolute top-0 left-0 w-64 h-64 bg-brand-gold/10 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2" />
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="flex flex-col md:flex-row justify-between items-end mb-20 gap-8">
           <div className="max-w-2xl">
             <h2 className="text-4xl md:text-6xl font-black text-brand-dark mb-6 leading-tight">
-              Our <span className="text-brand-accent">Excellence</span> Space
+              Why <span className="text-brand-accent">Novua</span> Edge?
             </h2>
             <p className="text-slate-500 text-lg">
-              Designed for focus, collaboration, and high-performance learning.
+              Our commitment to quality education through a student-centric approach.
             </p>
           </div>
           <a 
-            href="https://maps.app.goo.gl/a9DLvdxdkqbB31LN8" 
+            href="https://wa.me/919699939538" 
             target="_blank" 
             rel="noreferrer"
             className="group flex items-center gap-4 bg-white px-8 py-5 rounded-2xl shadow-xl hover:shadow-2xl transition-all border border-slate-100"
           >
             <div className="w-10 h-10 bg-brand-blue rounded-full flex items-center justify-center text-white group-hover:scale-110 transition-transform">
-              <MapPin size={20} />
+              <MessageCircle size={20} />
             </div>
-            <span className="font-bold text-brand-dark">Full Gallery</span>
+            <span className="font-bold text-brand-dark">Know More</span>
             <ChevronRight className="w-5 h-5 text-slate-300" />
           </a>
         </div>
         
-        <div className="grid grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {images.map((img, i) => (
             <motion.div 
               key={i}
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.1 }}
-              whileHover={{ y: -10 }}
-              className="relative aspect-[4/3] rounded-[3rem] overflow-hidden shadow-2xl group cursor-pointer"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.8, delay: i * 0.1 }}
+              whileHover={{ scale: 1.02 }}
+              className="relative min-h-[400px] rounded-[3rem] overflow-hidden shadow-2xl group cursor-pointer bg-slate-100"
             >
-              <img 
-                src={img.url} 
-                alt={img.title} 
-                className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" 
+              <div 
+                className="absolute inset-0 bg-cover bg-center transition-transform duration-1000 group-hover:scale-110"
+                style={{ backgroundImage: `url('${img.url}')` }}
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-brand-dark/90 via-brand-dark/20 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 flex items-end p-10">
-                <div>
-                  <h4 className="text-white font-black text-2xl tracking-tight translate-y-4 group-hover:translate-y-0 transition-transform">{img.title}</h4>
-                  <div className="w-12 h-1 bg-brand-gold mt-4 origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500" />
-                </div>
+              <div className="absolute inset-0 bg-gradient-to-t from-brand-dark/90 via-brand-dark/40 to-transparent flex flex-col justify-end p-10 z-10">
+                <h4 className="text-white font-black text-3xl tracking-tight mb-2">{img.title}</h4>
+                <p className="text-blue-100/80 font-bold mb-4">{img.desc}</p>
+                <div className="w-16 h-1 bg-brand-gold origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500" />
               </div>
             </motion.div>
           ))}
@@ -772,7 +749,7 @@ const Footer = () => {
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-16 mb-24">
           <div className="col-span-1 lg:col-span-1">
             <div className="mb-8">
-              <BrandLogo light={false} />
+              <BrandLogo onDarkBackground={true} />
             </div>
             <p className="text-slate-400 text-lg leading-relaxed mb-8 font-medium">
               Investing in Minds, <span className="text-white">Empowering Futures!</span> Premium coaching center dedicated to academic and competitive excellence.
