@@ -164,98 +164,98 @@ const Hero = ({ onApply }: { onApply: () => void }) => {
       <div className="absolute -bottom-24 left-1/4 w-96 h-96 bg-brand-gold/20 rounded-full blur-3xl opacity-30 animate-pulse" />
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
-        <div className="grid lg:grid-cols-2 gap-20 items-center">
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-          >
-            <div className="mb-0 flex items-center gap-4">
-              <span className="w-12 h-1 bg-brand-gold rounded-full" />
-              <span className="text-brand-blue font-black tracking-[.3em] text-xs uppercase">Premium Educational Academy</span>
-            </div>
-            
-            <div className="mt-8 mb-10 relative inline-block">
-              <div className="absolute inset-0 bg-brand-blue rotate-2 rounded-[2.5rem] opacity-5 translate-x-2 translate-y-2" />
-              <div className="relative bg-white border-2 border-brand-blue p-10 rounded-[2.5rem] shadow-[0_20px_50px_rgba(0,26,77,0.1)]">
-                <h1 className="text-5xl md:text-7xl font-black text-brand-blue leading-[0.9] tracking-tighter">
-                  INVESTING <br /> 
-                  <span className="text-brand-gold italic">IN MINDS</span> <br />
-                  <span className="text-brand-accent">EMPOWERING</span> <br />
-                  FUTURES!
-                </h1>
+          <div className="grid md:grid-cols-2 gap-12 lg:gap-20 items-center text-center md:text-left">
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+            >
+              <div className="mb-0 flex items-center justify-center md:justify-start gap-4">
+                <span className="w-12 h-1 bg-brand-gold rounded-full" />
+                <span className="text-brand-blue font-black tracking-[.3em] text-[10px] sm:text-xs uppercase">Premium Educational Academy</span>
               </div>
-            </div>
-            
-            <p className="text-slate-500 text-xl mb-10 max-w-lg leading-relaxed font-medium">
-              Start your success journey with Mumbai's most dedicated team for engineering & medical entrance exams.
-            </p>
-            
-            <div className="flex flex-col sm:flex-row gap-5">
-              <button 
-                onClick={onApply} 
-                className="bg-brand-blue hover:bg-brand-dark text-white px-10 py-5 rounded-2xl font-black text-lg flex items-center justify-center gap-3 transition-all shadow-[0_15px_30px_rgba(0,26,77,0.3)] hover:scale-[1.02] active:scale-95"
-              >
-                APPLY FOR ADMISSION
-                <ChevronRight className="w-6 h-6 border-2 border-white/30 rounded-full p-0.5" />
-              </button>
-              <a 
-                href="https://wa.me/919699939538" 
-                target="_blank" 
-                rel="noreferrer"
-                className="bg-green-500 hover:bg-green-600 text-white px-10 py-5 rounded-2xl font-black text-lg flex items-center justify-center gap-3 transition-all shadow-[0_15px_30px_rgba(34,197,94,0.3)] hover:scale-[1.02] active:scale-95"
-              >
-                <MessageCircle className="w-6 h-6" />
-                WHATSAPP
-              </a>
-            </div>
-
-            <div className="mt-16 flex items-center gap-8">
-              <div className="flex -space-x-3">
-                {[1, 2, 3, 4].map(i => (
-                  <div key={i} className={`w-12 h-12 rounded-full border-4 border-white bg-slate-200 flex items-center justify-center text-xs font-bold text-slate-500`}>U{i}</div>
-                ))}
-                <div className="w-12 h-12 rounded-full border-4 border-white bg-brand-gold flex items-center justify-center text-xs font-black text-brand-blue">+</div>
-              </div>
-              <div>
-                <div className="flex gap-1 text-brand-gold">
-                  {[1, 2, 3, 4, 5].map(i => <Star key={i} size={16} fill="currentColor" />)}
+              
+              <div className="mt-8 mb-10 relative inline-block">
+                <div className="absolute inset-0 bg-brand-blue rotate-2 rounded-[2.5rem] opacity-5 translate-x-2 translate-y-2" />
+                <div className="relative bg-white border-2 border-brand-blue p-6 sm:p-10 rounded-[2.5rem] shadow-[0_20px_50px_rgba(0,26,77,0.1)]">
+                  <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-brand-blue leading-[0.9] tracking-tighter">
+                    INVESTING <br /> 
+                    <span className="text-brand-gold italic">IN MINDS</span> <br />
+                    <span className="text-brand-accent">EMPOWERING</span> <br />
+                    FUTURES!
+                  </h1>
                 </div>
-                <div className="text-slate-400 text-sm font-bold mt-1">Join 500+ Successful Students</div>
               </div>
-            </div>
-          </motion.div>
-
-          {/* Side Content or Image for Hero */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1, delay: 0.2 }}
-            className="hidden lg:block relative"
-          >
-            <div className="relative z-10 p-4 bg-white/10 backdrop-blur-sm rounded-[3rem] border border-white/20">
-               <div className="grid grid-cols-2 gap-4">
-                  <div className="bg-brand-gold p-8 rounded-[2rem] shadow-xl text-brand-blue transform -rotate-3">
-                    <h3 className="text-4xl font-black mb-2">15</h3>
-                    <p className="font-bold text-sm leading-tight uppercase opacity-70">Students per batch maximum</p>
+              
+              <p className="text-slate-500 text-lg md:text-xl mb-10 max-w-lg leading-relaxed font-medium mx-auto md:mx-0">
+                Start your success journey with Mumbai's most dedicated team for engineering & medical entrance exams.
+              </p>
+              
+              <div className="flex flex-col sm:flex-row gap-5 justify-center md:justify-start">
+                <button 
+                  onClick={onApply} 
+                  className="bg-brand-blue hover:bg-brand-dark text-white px-8 sm:px-10 py-4 sm:py-5 rounded-2xl font-black text-base sm:text-lg flex items-center justify-center gap-3 transition-all shadow-[0_15px_30px_rgba(0,26,77,0.3)] hover:scale-[1.02] active:scale-95"
+                >
+                  APPLY NOW
+                  <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6 border-2 border-white/30 rounded-full p-0.5" />
+                </button>
+                <a 
+                  href="https://wa.me/919699939538" 
+                  target="_blank" 
+                  rel="noreferrer"
+                  className="bg-green-500 hover:bg-green-600 text-white px-8 sm:px-10 py-4 sm:py-5 rounded-2xl font-black text-base sm:text-lg flex items-center justify-center gap-3 transition-all shadow-[0_15px_30px_rgba(34,197,94,0.3)] hover:scale-[1.02] active:scale-95"
+                >
+                  <MessageCircle className="w-5 h-5 sm:w-6 sm:h-6" />
+                  WHATSAPP
+                </a>
+              </div>
+  
+              <div className="mt-16 flex flex-col sm:flex-row items-center gap-6 md:gap-8 justify-center md:justify-start">
+                <div className="flex -space-x-3">
+                  {[1, 2, 3, 4].map(i => (
+                    <div key={i} className={`w-10 h-10 md:w-12 md:h-12 rounded-full border-4 border-white bg-slate-200 flex items-center justify-center text-[10px] font-bold text-slate-500`}>U{i}</div>
+                  ))}
+                  <div className="w-10 h-10 md:w-12 md:h-12 rounded-full border-4 border-white bg-brand-gold flex items-center justify-center text-[10px] font-black text-brand-blue">+</div>
+                </div>
+                <div className="text-center md:text-left">
+                  <div className="flex gap-1 text-brand-gold justify-center md:justify-start">
+                    {[1, 2, 3, 4, 5].map(i => <Star key={i} size={14} fill="currentColor" />)}
                   </div>
-                  <div className="bg-brand-accent p-8 rounded-[2rem] shadow-xl text-white transform rotate-2 mt-12">
-                    <h3 className="text-4xl font-black mb-2">100%</h3>
-                    <p className="font-bold text-sm leading-tight uppercase opacity-80">Result oriented strategies</p>
-                  </div>
-                  <div className="col-span-2 bg-white p-8 rounded-[2.5rem] shadow-2xl flex items-center gap-6">
-                    <div className="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center flex-shrink-0">
-                      <GraduationCap className="text-brand-blue w-8 h-8" />
+                  <div className="text-slate-400 text-xs md:text-sm font-bold mt-1">Join 500+ Successful Students</div>
+                </div>
+              </div>
+            </motion.div>
+  
+            {/* Side Content or Image for Hero - Now visible on tablet (md) */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 1, delay: 0.2 }}
+              className="hidden md:block relative"
+            >
+              <div className="relative z-10 p-4 bg-white/10 backdrop-blur-sm rounded-[3rem] border border-white/20">
+                 <div className="grid grid-cols-2 gap-4">
+                    <div className="bg-brand-gold p-6 lg:p-8 rounded-[2rem] shadow-xl text-brand-blue transform -rotate-3">
+                      <h3 className="text-3xl lg:text-4xl font-black mb-2">15</h3>
+                      <p className="font-bold text-[10px] lg:text-sm leading-tight uppercase opacity-70">Students per batch maximum</p>
                     </div>
-                    <div>
-                      <h4 className="text-xl font-black text-brand-blue">Expert Faculty</h4>
-                      <p className="text-gray-500 font-medium">IITians & Post-Graduates</p>
+                    <div className="bg-brand-accent p-6 lg:p-8 rounded-[2rem] shadow-xl text-white transform rotate-2 mt-8 lg:mt-12">
+                      <h3 className="text-3xl lg:text-4xl font-black mb-2">100%</h3>
+                      <p className="font-bold text-[10px] lg:text-sm leading-tight uppercase opacity-80">Result oriented strategies</p>
                     </div>
-                  </div>
-               </div>
-            </div>
-          </motion.div>
-        </div>
+                    <div className="col-span-2 bg-white p-6 lg:p-8 rounded-[2.5rem] shadow-2xl flex items-center gap-4 lg:gap-6">
+                      <div className="w-12 h-12 lg:w-16 lg:h-16 bg-blue-100 rounded-2xl flex items-center justify-center flex-shrink-0">
+                        <GraduationCap className="text-brand-blue w-6 h-6 lg:w-8 lg:h-8" />
+                      </div>
+                      <div className="text-left">
+                        <h4 className="text-lg lg:text-xl font-black text-brand-blue">Expert Faculty</h4>
+                        <p className="text-gray-500 text-sm lg:text-base font-medium">IITians & Post-Graduates</p>
+                      </div>
+                    </div>
+                 </div>
+              </div>
+            </motion.div>
+          </div>
       </div>
     </section>
   );
