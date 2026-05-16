@@ -158,7 +158,7 @@ const Navbar = ({ onApply }: { onApply: () => void }) => {
 
 const Hero = ({ onApply }: { onApply: () => void }) => {
   return (
-    <section id="home" className="relative min-h-screen flex items-center pt-32 pb-20 overflow-hidden bg-white">
+    <section id="home" className="relative md:min-h-screen flex items-center pt-24 pb-12 md:pt-32 md:pb-20 overflow-hidden bg-white">
       {/* Dynamic Background Elements */}
       <div className="absolute top-0 right-0 w-[60%] h-full bg-brand-blue skew-x-[-8deg] transform translate-x-32 hidden lg:block shadow-2xl" />
       <div className="absolute -bottom-24 left-1/4 w-96 h-96 bg-brand-gold/20 rounded-full blur-3xl opacity-30 animate-pulse" />
